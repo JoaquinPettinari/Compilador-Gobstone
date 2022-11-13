@@ -1,0 +1,39 @@
+import java_cup.runtime.*;
+
+
+terminal PONER, MOVER, SACAR, START, END, COLOR, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO;
+terminal String DIR;
+terminal Integer NUMBER;
+non terminal program, initial, listaInstrucciones, instruccion;
+non terminal Tablero tablero;
+
+program ::= initial START listaInstrucciones END
+    {:
+        System.out.println("[Sintaxis completada satisfactoriamente]"); 
+    :};
+
+initial ::= tablero
+    {:
+        Tablero.imprimirTablero();
+    :};
+
+tablero ::= TABLERO LPAREN NUMBER:n1 COMMA NUMBER:n2 RPAREN SCOLON
+    {:
+        RESULT = new Tablero(n1, n2);
+    :};
+
+listaInstrucciones ::= listaInstrucciones instruccion 
+                    | instruccion;
+
+instruccion ::= PONER LPAREN COLOR:c RPAREN SCOLON
+    {:
+        Tablero.poner(c);
+    :}
+    | MOVER LPAREN DIR:d RPAREN SCOLON
+    {:
+        Tablero.mover(d);
+    :}
+    | SACAR LPAREN COLOR:c RPAREN SCOLON
+    {:
+        Tablero.sacar(c);
+    :};
