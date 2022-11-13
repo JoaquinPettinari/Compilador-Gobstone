@@ -1,23 +1,25 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Colores {
-    private static int ROJOS;
-    private static int AZULES;
+    Map<String, Integer> map = new HashMap<>();  
     
     public Colores(int cantidad_rojo, int cantidad_azul){
-        Colores.ROJOS = cantidad_rojo;
-        Colores.AZULES = cantidad_azul;
+        map.put("R", cantidad_rojo);
+        map.put("A", cantidad_azul);
     };
 
     public int devolverRojos(){
-        return ROJOS;
+        return map.get("R");
     }
 
     public int devolverAzules(){
-        return AZULES;
+        return map.get("A");
     }
     
     @Override
     public String toString() {
-        return String.format("Rojos: %1$s; Azules: %2$s", Colores.ROJOS, Colores.AZULES);
+        return String.format("Rojos: %1$s; Azules: %2$s", this.devolverRojos(), this.devolverAzules());
     }
     
 }
