@@ -1,14 +1,15 @@
 import java_cup.runtime.*;
 
 
-terminal PONER, MOVER, SACAR, START, END, COLOR, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO;
-terminal String DIR;
+terminal PONER, MOVER, SACAR, START, END, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO;
+terminal String DIR, COLOR;
 terminal Integer NUMBER;
 non terminal program, initial, listaInstrucciones, instruccion;
 non terminal Tablero tablero;
 
 program ::= initial START listaInstrucciones END
     {:
+        Tablero.imprimirTablero();
         System.out.println("[Sintaxis completada satisfactoriamente]"); 
     :};
 

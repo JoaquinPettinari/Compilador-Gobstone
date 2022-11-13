@@ -9,17 +9,23 @@ public class Colores {
         map.put("A", cantidad_azul);
     };
 
-    public int devolverRojos(){
-        return map.get("R");
+    public Colores ponerColor(String color){
+        map.put(color, map.get(color) + 1);
+        return this;
     }
 
-    public int devolverAzules(){
-        return map.get("A");
+    public int devolverColor(String color){
+        return map.get(color);
+    }
+
+    public Colores sacarColor(String color){
+        map.put(color, map.get(color) - 1);
+        return this;
     }
     
     @Override
     public String toString() {
-        return String.format("Rojos: %1$s; Azules: %2$s", this.devolverRojos(), this.devolverAzules());
+        return String.format("Rojos: %1$s; Azules: %2$s", this.devolverColor("R"), this.devolverColor("A"));
     }
     
 }
