@@ -25,7 +25,7 @@ Dir {return new Symbol(sym.DIR);}
 Color {return new Symbol(sym.COLOR);}
 
 Norte | Sur | Este | Oeste { return new Symbol(sym.DIR, yytext()); }
-Rojo | Azul | Negro | Verde { return new Symbol(sym.COLOR, yytext()); }
+Rojo | Azul { return new Symbol(sym.COLOR, yytext()); }
 
 "(" { return new Symbol(sym.LPAREN); }
 ")" { return new Symbol(sym.RPAREN); }

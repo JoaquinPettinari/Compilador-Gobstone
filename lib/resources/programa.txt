@@ -1,5 +1,6 @@
-Tablero(2,5);
+Tablero(5,5);
 START
 Poner(Rojo);
 Mover(Norte);
+Sacar(Rojo);
 END

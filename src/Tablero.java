@@ -1,9 +1,9 @@
 public class Tablero {
 
-    private static int [][] tablero;
+    private static Colores [][] tablero;
 
     public Tablero(int filas, int columnas){
-        tablero = new int [filas][columnas];
+        tablero = new Colores [filas][columnas];
         Tablero.inicializarTablero();
     }
 
@@ -11,8 +11,8 @@ public class Tablero {
         int filas = tablero.length;
         int columnas = tablero[0].length;
         for (int i = 0; i < filas; i++){
-            for (int j = 0; j < columnas; j++){
-                tablero[i][j] = 0;
+            for (int j = 0; j < columnas; j++){                
+                tablero[i][j] = new Colores(0, 0);
             }
         }
     }
@@ -32,7 +32,7 @@ public class Tablero {
     public static void imprimirTablero(){
         for (int i = 0; i < tablero.length; i++){
             for (int j = 0; j < tablero[0].length; j++){
-                System.out.print(tablero[i][j]);
+                System.out.print(tablero[i][j].toString() + " | ");
             }
             System.out.println("");
         }

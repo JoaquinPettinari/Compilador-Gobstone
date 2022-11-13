@@ -12,7 +12,7 @@ program ::= initial START listaInstrucciones END
         System.out.println("[Sintaxis completada satisfactoriamente]"); 
     :};
 
-initial ::= tablero
+initial ::= tablero 
     {:
         Tablero.imprimirTablero();
     :};
@@ -24,16 +24,16 @@ tablero ::= TABLERO LPAREN NUMBER:n1 COMMA NUMBER:n2 RPAREN SCOLON
 
 listaInstrucciones ::= listaInstrucciones instruccion 
                     | instruccion;
-
+// S -> A | B | C
 instruccion ::= PONER LPAREN COLOR:c RPAREN SCOLON
     {:
-        Tablero.poner(c);
+        Tablero.poner(c.charAt(0));
     :}
     | MOVER LPAREN DIR:d RPAREN SCOLON
     {:
-        Tablero.mover(d);
+        Tablero.mover(d.charAt(0));
     :}
     | SACAR LPAREN COLOR:c RPAREN SCOLON
     {:
-        Tablero.sacar(c);
+        Tablero.sacar(c.charAt(0));
     :};
