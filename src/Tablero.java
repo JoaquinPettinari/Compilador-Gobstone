@@ -60,14 +60,14 @@ public class Tablero {
     };
 
     public static void Arriba() {
-		if (Y < filas) //Solo decrementamos si el valor actual es mayor que 0
+		if (Y < filas)
 			X++;
         else
             throw new IllegalArgumentException("No se puede ir al 'Norte'");
 	}
  
 	public static void Abajo() {
-		if (Y > filas) //Solo incrementos si estamos por debajo del límite
+		if (Y > filas)
 			X--;
         else
             throw new IllegalArgumentException("No se puede ir al 'Sur'");
