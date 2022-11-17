@@ -8,10 +8,10 @@ public class Tablero {
 
     public Tablero(int filas, int columnas){
         tablero = new Colores [filas][columnas];
-        Tablero.inicializarTablero();        
+        this.inicializarTablero();        
     }    
 
-    private static void inicializarTablero(){
+    private void inicializarTablero(){
         filas = tablero.length;
         columnas = tablero[0].length;
         for (int i = 0; i < filas; i++){
@@ -102,17 +102,3 @@ public class Tablero {
         System.out.println("");
     }
 }
-
-
-/*
- * 1 2 3
- * 4 5 6
- * 7 8 9
- * 
- * 7 8 9
- * 4 5 6
- * 1 2 3
- * 
- * 
- * 
- */
