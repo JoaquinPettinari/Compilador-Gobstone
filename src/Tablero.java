@@ -8,7 +8,7 @@ public class Tablero {
 
     public Tablero(int filas, int columnas){
         tablero = new Colores [filas][columnas];
-        Tablero.inicializarTablero();
+        Tablero.inicializarTablero();        
     }    
 
     private static void inicializarTablero(){
@@ -60,7 +60,7 @@ public class Tablero {
     };
 
     public static void Arriba() {
-		if (Y < filas)
+		if (Y < filas - 1)
 			Y++;
         else
             throw new IllegalArgumentException("No se puede ir al 'Norte'");
@@ -81,7 +81,7 @@ public class Tablero {
 	}
  
 	public static void Derecha() {
-		if (X < columnas)
+		if (X < columnas - 1)
 			X++;
         else
             throw new IllegalArgumentException("No se puede ir al 'Este'");
@@ -102,3 +102,17 @@ public class Tablero {
         System.out.println("");
     }
 }
+
+
+/*
+ * 1 2 3
+ * 4 5 6
+ * 7 8 9
+ * 
+ * 7 8 9
+ * 4 5 6
+ * 1 2 3
+ * 
+ * 
+ * 
+ */
