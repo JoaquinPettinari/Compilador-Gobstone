@@ -61,38 +61,44 @@ public class Tablero {
 
     public static void Arriba() {
 		if (Y < filas)
-			X++;
+			Y++;
         else
             throw new IllegalArgumentException("No se puede ir al 'Norte'");
 	}
  
 	public static void Abajo() {
-		if (Y > filas)
-			X--;
+		if (Y > 0)
+			Y--;
         else
             throw new IllegalArgumentException("No se puede ir al 'Sur'");
 	}
  
 	public static void Izquierda() {
 		if (X > 0)
-			Y--;
+			X--;
         else
             throw new IllegalArgumentException("No se puede ir al 'Oeste'");
 	}
  
 	public static void Derecha() {
 		if (X < columnas)
-			Y++;
+			X++;
         else
             throw new IllegalArgumentException("No se puede ir al 'Este'");
 	}
 
     public static void imprimirTablero(){
-        for (int i = tablero.length - 1; i >= 0; i--){
-            for (int j = 0; j < tablero[0].length; j++){
-                System.out.print(tablero[i][j].toString() + " | ");
+        for (int j = tablero[0].length - 1; j >= 0; j--){
+            for (int i = 0; i < tablero.length - 1 ; i++){
+                if(i == X && j == Y){
+                    System.out.print("[ " + tablero[i][j].toString() + " ] | ");
+                }
+                else{
+                    System.out.print(tablero[i][j].toString() + " | ");
+                }
             }
             System.out.println("");
         }
+        System.out.println("");
     }
 }

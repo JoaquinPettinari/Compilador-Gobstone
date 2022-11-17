@@ -29,12 +29,15 @@ listaInstrucciones ::= listaInstrucciones instruccion
 instruccion ::= PONER LPAREN COLOR:c RPAREN SCOLON
     {:
         Tablero.poner(c.charAt(0));
+        Tablero.imprimirTablero();
     :}
     | MOVER LPAREN DIR:d RPAREN SCOLON
     {:
         Tablero.mover(d.charAt(0));
+        Tablero.imprimirTablero();
     :}
     | SACAR LPAREN COLOR:c RPAREN SCOLON
     {:
         Tablero.sacar(c.charAt(0));
+        Tablero.imprimirTablero();
     :};
