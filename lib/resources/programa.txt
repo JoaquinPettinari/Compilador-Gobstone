@@ -1,4 +1,4 @@
 Tablero(5,5);
 START
-repeat(3){Mover(Norte);};
+repeat(3){Sacar(Rojo);};
 END

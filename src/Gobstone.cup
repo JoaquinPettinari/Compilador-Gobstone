@@ -1,4 +1,26 @@
 import java_cup.runtime.*;
+import java.util.function.Consumer;
+
+action code
+{:
+    public static void bucleFor (Integer num, String param, Consumer<String> func){ 
+		for (int i = 0; i < num; i++) {
+            func.accept(param);
+		};
+	};
+
+    public static void ponerEnTablero(String color){
+        Tablero.poner(color);
+    };
+
+    public static void sacarDelTablero(String color){
+        Tablero.sacar(color);
+    };
+
+    public static void moverPuntero(String direccion){
+        Tablero.mover(direccion);
+    };
+:}
 
 
 terminal PONER, MOVER, SACAR, START, END, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO, REPEAT;
@@ -31,44 +53,38 @@ declaracion ::= instruccion | loop;
 
 instruccion ::= poner:c
     {:
-        Tablero.poner(c);
+        ponerEnTablero(c);
         Tablero.imprimirTablero();
     :};
 
 instruccion ::= mover:d
     {:
-        Tablero.mover(d);
+        moverPuntero(d);
         Tablero.imprimirTablero();
     :};
 
 instruccion ::= sacar:c
     {:
-        Tablero.sacar(c);
+        sacarDelTablero(c);
         Tablero.imprimirTablero();
     :};
 
 loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE poner:c RBRACE SCOLON
     {:
-        for (int i = 0; i < n; i++) {
-            Tablero.poner(c);
-            Tablero.imprimirTablero();
-        };
+        Consumer<String> ponerFuncion = color -> ponerEnTablero(color);
+        bucleFor(n, c, ponerFuncion);
     :};
 
 loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE mover:d RBRACE SCOLON
     {:  
-        for (int i = 0; i < n; i++) {
-            Tablero.mover(d);
-            Tablero.imprimirTablero();
-        };
+        Consumer<String> moverFuncion = direccion -> moverPuntero(direccion);
+        bucleFor(n, d, moverFuncion);
     :};
 
 loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE sacar:c RBRACE SCOLON
     {:  
-        for (int i = 0; i < n; i++) {
-            Tablero.sacar(c);
-            Tablero.imprimirTablero();
-        };
+        Consumer<String> sacarFuncion = color -> sacarDelTablero(color);
+        bucleFor(n, c, sacarFuncion);        
     :};
 
 mover ::= MOVER LPAREN DIR:d RPAREN SCOLON
