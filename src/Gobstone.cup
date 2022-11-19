@@ -47,9 +47,28 @@ instruccion ::= sacar:c
         Tablero.imprimirTablero();
     :};
 
-loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE instruccion:i RBRACE SCOLON
+loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE poner:c RBRACE SCOLON
     {:
-        System.out.println(i); 
+        for (int i = 0; i < n; i++) {
+            Tablero.poner(c);
+            Tablero.imprimirTablero();
+        };
+    :};
+
+loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE mover:d RBRACE SCOLON
+    {:  
+        for (int i = 0; i < n; i++) {
+            Tablero.mover(d);
+            Tablero.imprimirTablero();
+        };
+    :};
+
+loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE sacar:c RBRACE SCOLON
+    {:  
+        for (int i = 0; i < n; i++) {
+            Tablero.sacar(c);
+            Tablero.imprimirTablero();
+        };
     :};
 
 mover ::= MOVER LPAREN DIR:d RPAREN SCOLON
