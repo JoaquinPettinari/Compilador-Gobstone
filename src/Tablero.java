@@ -29,19 +29,19 @@ public class Tablero {
     public static void mover(char direccion){
         switch (String.valueOf(direccion)) {
             case "N": {
-                Tablero.Arriba();
+                Tablero.arriba();
                 break;
             }
             case "O": {
-                Tablero.Izquierda();
+                Tablero.izquierda();
                 break;
             }
             case "S": {
-                Tablero.Abajo();
+                Tablero.abajo();
                 break;
             }
             case "E": {
-                Tablero.Derecha();
+                Tablero.derecha();
                 break;
             }
             default: throw new IllegalArgumentException("Elemento inválido: " + direccion);
@@ -59,32 +59,28 @@ public class Tablero {
         }
     };
 
-    public static void Arriba() {
-		if (Y < filas - 1)
-			Y++;
-        else
+    public static void arriba() {
+		if (Y >= filas - 1)
             throw new IllegalArgumentException("No se puede ir al 'Norte'");
+        Y++;        
 	}
  
-	public static void Abajo() {
-		if (Y > 0)
-			Y--;
-        else
-            throw new IllegalArgumentException("No se puede ir al 'Sur'");
+	public static void abajo() {
+		if (Y <= 0)
+          throw new IllegalArgumentException("No se puede ir al 'Sur'");
+        Y--;    
 	}
  
-	public static void Izquierda() {
-		if (X > 0)
-			X--;
-        else
-            throw new IllegalArgumentException("No se puede ir al 'Oeste'");
+	public static void izquierda() {
+		if (X <= 0)
+            throw new IllegalArgumentException("No se puede ir al 'Oeste'");        
+        X--;
 	}
  
-	public static void Derecha() {
-		if (X < columnas - 1)
-			X++;
-        else
+	public static void derecha() {
+		if (X >= columnas - 1)
             throw new IllegalArgumentException("No se puede ir al 'Este'");
+        X++;        
 	}
 
     public static void imprimirTablero(){
