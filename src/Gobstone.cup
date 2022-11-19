@@ -1,13 +1,14 @@
 import java_cup.runtime.*;
 
 
-terminal PONER, MOVER, SACAR, START, END, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO;
+terminal PONER, MOVER, SACAR, START, END, LPAREN, RPAREN, COMMA, SCOLON, LBRACE, RBRACE, TABLERO, REPEAT;
 terminal String DIR, COLOR;
 terminal Integer NUMBER;
-non terminal program, initial, listaInstrucciones, instruccion;
+non terminal program, initial, listaDeclaraciones, declaracion, instruccion, loop;
 non terminal Tablero tablero;
+non terminal String mover, poner, sacar;
 
-program ::= initial START listaInstrucciones END
+program ::= initial START listaDeclaraciones END
     {:
         Tablero.imprimirTablero();
         System.out.println("[Sintaxis completada satisfactoriamente]"); 
@@ -23,21 +24,45 @@ tablero ::= TABLERO LPAREN NUMBER:n1 COMMA NUMBER:n2 RPAREN SCOLON
         RESULT = new Tablero(n1, n2);
     :};
 
-listaInstrucciones ::= listaInstrucciones instruccion 
-                    | instruccion;
-// S -> A | B | C
-instruccion ::= PONER LPAREN COLOR:c RPAREN SCOLON
+listaDeclaraciones ::= listaDeclaraciones declaracion 
+                    | declaracion;
+
+declaracion ::= instruccion | loop;
+
+instruccion ::= poner:c
     {:
-        Tablero.poner(c.charAt(0));
+        Tablero.poner(c);
         Tablero.imprimirTablero();
-    :}
-    | MOVER LPAREN DIR:d RPAREN SCOLON
+    :};
+
+instruccion ::= mover:d
     {:
-        Tablero.mover(d.charAt(0));
+        Tablero.mover(d);
         Tablero.imprimirTablero();
-    :}
-    | SACAR LPAREN COLOR:c RPAREN SCOLON
+    :};
+
+instruccion ::= sacar:c
     {:
-        Tablero.sacar(c.charAt(0));
+        Tablero.sacar(c);
         Tablero.imprimirTablero();
+    :};
+
+loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE instruccion:i RBRACE SCOLON
+    {:
+        System.out.println(i); 
+    :};
+
+mover ::= MOVER LPAREN DIR:d RPAREN SCOLON
+    {:
+        RESULT = String.valueOf(d.charAt(0));
+    :};
+
+poner ::= PONER LPAREN COLOR:c RPAREN SCOLON
+    {:
+        RESULT = String.valueOf(c.charAt(0));
+    :};
+
+sacar ::= SACAR LPAREN COLOR:c RPAREN SCOLON
+    {:
+        RESULT = String.valueOf(c.charAt(0));
     :};

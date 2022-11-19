@@ -21,13 +21,13 @@ public class Tablero {
         }
     }
 
-    public static void poner(char color){
+    public static void poner(String color){
         Colores colorAPoner = tablero[X][Y];
-        tablero[X][Y] = colorAPoner.ponerColor(String.valueOf(color));
+        tablero[X][Y] = colorAPoner.ponerColor(color);
     };
 
-    public static void mover(char direccion){
-        switch (String.valueOf(direccion)) {
+    public static void mover(String direccion){
+        switch (direccion) {
             case "N": {
                 Tablero.arriba();
                 break;
@@ -48,14 +48,13 @@ public class Tablero {
         }
     };
     
-    public static void sacar(char color){
-        String colorEnString = String.valueOf(color);
+    public static void sacar(String color){        
         Colores colorASacar = tablero[X][Y];
-        if(colorASacar.devolverColor(colorEnString) != 0){
-            tablero[X][Y] = colorASacar.sacarColor(colorEnString);
+        if(colorASacar.devolverColor(color) != 0){
+            tablero[X][Y] = colorASacar.sacarColor(color);
         }
         else{
-            System.out.println(String.format("No podes sacar mas del color: %1$s", colorEnString));
+            System.out.println(String.format("No podes sacar mas del color: %1$s", color));
         }
     };
 

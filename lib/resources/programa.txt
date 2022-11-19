@@ -1,9 +1,7 @@
 Tablero(5,5);
 START
+Poner(Rojo);
 Mover(Norte);
-Mover(Norte);
-Mover(Norte);
-Mover(Norte);
-Mover(Norte);
-Mover(Norte);
+Sacar(Rojo);
+repeat(3){Poner(Rojo);};
 END

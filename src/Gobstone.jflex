@@ -17,6 +17,7 @@ END {return new Symbol(sym.END);}
 
 \d { return new Symbol(sym.NUMBER, Integer.valueOf(yytext())); }
 
+repeat { return  new Symbol(sym.REPEAT);}
 Tablero { return new Symbol(sym.TABLERO);}
 Poner {return new Symbol(sym.PONER);}
 Mover {return new Symbol(sym.MOVER);}
