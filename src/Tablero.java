@@ -58,6 +58,10 @@ public class Tablero {
         }
     };
 
+    public static Boolean hayColor(String color){
+        return tablero[X][Y].hayColor(color);
+    }
+
     public static void arriba() {
 		if (Y >= filas - 1)
             throw new IllegalArgumentException("No se puede ir al 'Norte'");

@@ -22,6 +22,10 @@ public class Colores {
         map.put(color, map.get(color) - 1);
         return this;
     }
+
+    public Boolean hayColor(String color){
+        return this.devolverColor(color) != 0;
+    }
     
     @Override
     public String toString() {
