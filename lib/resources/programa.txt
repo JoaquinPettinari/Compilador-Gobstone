@@ -1,5 +1,5 @@
 Tablero(5,5);
 START
 repeat(3){Poner(Rojo);};
-if(hayColor(Rojo)){Poner(Rojo);};
+if(hayColor(Azul)){Poner(Rojo);};
 END

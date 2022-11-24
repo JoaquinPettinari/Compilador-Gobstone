@@ -54,7 +54,7 @@ public class Tablero {
             tablero[X][Y] = colorASacar.sacarColor(color);
         }
         else{
-            System.out.println(String.format("No podes sacar mas del color: %1$s", color));
+            throw new IllegalArgumentException(String.format("No podes sacar mas del color: %1$s", color));
         }
     };
 
