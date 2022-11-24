@@ -61,19 +61,16 @@ declaracion ::= instruccion | loop | cond;
 instruccion ::= poner:c
     {:
         ponerEnTablero(c);
-        Tablero.imprimirTablero();
     :};
 
 instruccion ::= mover:d
     {:
         moverPuntero(d);
-        Tablero.imprimirTablero();
     :};
 
 instruccion ::= sacar:c
     {:
         sacarDelTablero(c);
-        Tablero.imprimirTablero();
     :};
 
 loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE poner:c RBRACE SCOLON
@@ -94,6 +91,25 @@ loop ::= REPEAT LPAREN NUMBER:n RPAREN LBRACE sacar:c RBRACE SCOLON
         ejecutarFuncion(n, c);        
     :};
 
+cond ::= IF LPAREN hayColor:b RPAREN LBRACE poner:c RBRACE SCOLON
+    {:
+        if(b){
+            ponerEnTablero(c);
+        }
+    :};
+
+cond ::= IF LPAREN NEG hayColor:b RPAREN LBRACE poner:c RBRACE SCOLON
+    {:
+        if(!b){
+            ponerEnTablero(c);
+        }
+    :};
+
+hayColor ::= HAYCOLOR LPAREN COLOR:c RPAREN
+    {:
+        RESULT = Tablero.hayColor(String.valueOf(c.charAt(0)));
+    :};
+
 mover ::= MOVER LPAREN DIR:d RPAREN SCOLON
     {:
         RESULT = String.valueOf(d.charAt(0));
@@ -107,23 +123,4 @@ poner ::= PONER LPAREN COLOR:c RPAREN SCOLON
 sacar ::= SACAR LPAREN COLOR:c RPAREN SCOLON
     {:
         RESULT = String.valueOf(c.charAt(0));
-    :};
-
-cond ::= IF LPAREN hayColor:b RPAREN SCOLON
-    {:
-        if(b){
-            System.out.println("Entro b");
-        }
-    :};
-
-cond ::= IF LPAREN NEG hayColor:b RPAREN SCOLON
-    {:
-        if(!b){
-            System.out.println("Entro !b");
-        }
-    :};
-
-hayColor ::= HAYCOLOR LPAREN COLOR:c RPAREN
-    {:
-        RESULT = Tablero.hayColor(String.valueOf(c.charAt(0)));
     :};

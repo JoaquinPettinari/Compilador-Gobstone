@@ -1,4 +1,5 @@
 Tablero(5,5);
 START
-repeat(3){Sacar(Rojo);};
+repeat(3){Poner(Rojo);};
+if(hayColor(Rojo)){Poner(Rojo);};
 END
